@@ -83,5 +83,15 @@ def directions(str):
 		out.append(direction_string(section,index))
 		index = find_direction(section,index)
 	return out
+
+def sentence_tokenize(str):
+	sent_detector = nltk.data.load('tokenizers/punkt/english.pickle')
+	return sent_detector.tokenize(str)
+	
+def directions_steps(str):
+	out = []
+	for step in directions(str):
+		out.extend(sentence_tokenize(step))
+	return out
 		
 		
