@@ -1,16 +1,44 @@
 import pymongo, csv
 from pymongo import MongoClient
 
-client = MongoClient('localhost', 27017)
-db = client['db']
-# categories = ["proteins","dairy","cooking-liquids","spices-sauces","vegetables","fruits","starches"]
-categories = ["proteins"]
 
+"""This file imports a list of csv's and puts them into the database."""
+
+############################################################################
+#####Important Functions
+############################################################################
 def categorize(ingredient_name):
-	for category in categories:
+	for category in food_categories:
 		if db[category].find({"name":ingredient_name}).count() > 0:
 			return category
 
+def to_vegetarian(ingredient_name):
+	""
+
+def to_meat(ingredient_name):
+	""
+
+def to_cuisine(cuisine, ingredient_name):
+	""
+
+def to_healthy(ingredient_name):
+	""
+
+def to_unhealthy(ingredient_name):
+	""
+
+
+
+############################################################################
+####Backend Functions
+############################################################################
+
+client = MongoClient('localhost', 27017)
+db = client['db']
+# categories = ["proteins","dairy","cooking-liquids","spices-sauces","vegetables","fruits","starches"]
+food_categories = ["proteins"]
+
+#initializes a collection
 def init_db_collection(collectionName):
 	client = MongoClient('localhost', 27017)
 
@@ -23,28 +51,20 @@ def init_db_collection(collectionName):
 
 ##collection name will be "category"
 ##imports from "category".txt
-def import_category(category):
+def import_foods():
 	attributes = ["name","vegetarian","healthy","east-asian","indian","spanish","american","italian","no-cuisine"]
-
-	collection = init_db_collection(category)
-
-	file_name = category+".csv"
-	with open(file_name, "rb") as csv_file:
-		rows = csv.reader(csv_file, delimiter=",")
-		csv_file.readline()##skips first line
-
-		for row in rows:
-			ingredient = {}
-			for attr, value in enumerate(row):
-				ingredient[attributes[attr]] = value
-
-			collection_id = collection.insert(ingredient)
-
-
-
+	for category in food_categories:
+		collection = init_db_collection(category)
+		file_name = category+".csv"
+		with open(file_name, "rb") as csv_file:
+			rows = csv.reader(csv_file, delimiter=",")
+			csv_file.readline()##skips first line
+			for row in rows:
+				ingredient = {}
+				for attr, value in enumerate(row):
+					ingredient[attributes[attr]] = value
+				collection_id = collection.insert(ingredient)
 			
 def main():
-	for category in categories:
-		import_category(category)
+	import_foods()
 main()
-categorize("beef")
