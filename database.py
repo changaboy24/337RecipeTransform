@@ -41,10 +41,15 @@ def to_unhealthy(ingredient_name):
 	return find_replacement(ingredient_name, "unhealthy",1)
 
 def is_action_past_tense(action):
-	""
+	if db.actions.find({"past-tense":action}).count() > 0:
+		return 1
+	return 0
 
 def find_tool_for_action(action):
-	""
+	for attr in ["food-prep", "past-tense"]:
+		if db.actions.find({attr:action}).count() > 0:
+			return db.actions.find_one({attr:action})["tool"]
+	return "notfound"
 
 
 
@@ -110,4 +115,4 @@ def main():
 	import_cooking_tools()
 
 main()
-print to_vegetarian("beef")
+print find_tool_for_action("blended")
