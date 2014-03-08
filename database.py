@@ -72,18 +72,36 @@ def init_db_collection(collectionName):
 def import_foods():
 	attributes = ["name","vegetarian","healthy","east-asian","indian","spanish","american","italian","no-cuisine"]
 	for category in food_categories:
-		collection = init_db_collection(category)
-		file_name = category+".csv"
-		with open("csv/"+file_name, "rb") as csv_file:
+		put_into_db(category,attributes)
+
+def import_actions():
+	attributes = ["food-prep","past-tense","tool"]
+	put_into_db("actions",attributes)
+
+def import_prep_tools():
+	attributes = ["names","alt-names"]
+	put_into_db("prep-tools",attributes)
+
+def import_cooking_tools():
+	attributes = ["names"]
+	put_into_db("cooking-tools",attributes)
+
+def put_into_db(csv_name, attributes):
+	collection = init_db_collection(csv_name)
+	with open("csv/"+csv_name+".csv","rb") as csv_file:
 			rows = csv.reader(csv_file, delimiter=",")
 			csv_file.readline()##skips first line
 			for row in rows:
-				ingredient = {}
+				db_row = {}
 				for attr, value in enumerate(row):
-					ingredient[attributes[attr]] = value
-				collection_id = collection.insert(ingredient)
-			
+					db_row[attributes[attr]] = value
+				collection_id = collection.insert(db_row)
+
 def main():
 	import_foods()
+	import_actions()
+	import_prep_tools()
+	import_cooking_tools()
+
 main()
-is_vegetarian("beef")
+print is_vegetarian("beef")
