@@ -8,7 +8,7 @@ categories = ["proteins"]
 
 def categorize(ingredient_name):
 	for category in categories:
-		if db.category.find({"name":ingredient_name}).count():
+		if db[category].find({"name":ingredient_name}).count() > 0:
 			return category
 
 def init_db_collection(collectionName):
@@ -47,3 +47,4 @@ def main():
 	for category in categories:
 		import_category(category)
 main()
+categorize("beef")
