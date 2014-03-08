@@ -53,8 +53,7 @@ def find_tool_for_action(action):
 
 client = MongoClient('localhost', 27017)
 db = client['db']
-# categories = ["proteins","dairy","cooking-liquids","spices-sauces","vegetables","fruits","starches"]
-food_categories = ["proteins"]
+food_categories = ["proteins","dairy","cooking-liquids","spices-sauces","vegetables","fruits","starches"]
 
 #initializes a collection
 def init_db_collection(collectionName):
@@ -74,7 +73,7 @@ def import_foods():
 	for category in food_categories:
 		collection = init_db_collection(category)
 		file_name = category+".csv"
-		with open(file_name, "rb") as csv_file:
+		with open("csv/"+file_name, "rb") as csv_file:
 			rows = csv.reader(csv_file, delimiter=",")
 			csv_file.readline()##skips first line
 			for row in rows:
