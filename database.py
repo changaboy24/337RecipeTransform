@@ -26,19 +26,19 @@ def is_vegetarian(ingredient_name):
 	return "notfound"
 
 def to_vegetarian(ingredient_name):
-	""
+	return find_replacement(ingredient_name, "vegetarian",1)
 
 def to_meat(ingredient_name):
-	""
+	return find_replacement(ingredient_name, "vegetarian",0)
 
 def to_cuisine(cuisine, ingredient_name):
-	""
+	return find_replacement(ingredient_name, cuisine,1)
 
 def to_healthy(ingredient_name):
-	""
+	return find_replacement(ingredient_name, "healthy",1)
 
 def to_unhealthy(ingredient_name):
-	""
+	return find_replacement(ingredient_name, "unhealthy",1)
 
 def is_action_past_tense(action):
 	""
@@ -97,6 +97,12 @@ def put_into_db(csv_name, attributes):
 					db_row[attributes[attr]] = value
 				collection_id = collection.insert(db_row)
 
+def find_replacement(ingredient_name, transform, value):
+	category = categorize(ingredient_name)
+	if db[category].find({transform:str(value)}).count() > 0:
+		return db[category].find_one({transform:str(value)})['name']
+	return 'notfound'
+
 def main():
 	import_foods()
 	import_actions()
@@ -104,4 +110,4 @@ def main():
 	import_cooking_tools()
 
 main()
-print is_vegetarian("beef")
+print to_vegetarian("beef")
