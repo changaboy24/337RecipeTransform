@@ -7,11 +7,23 @@ from pymongo import MongoClient
 ############################################################################
 #####Important Functions
 ############################################################################
+
+#input: ingredient name (i.e. chicken, salt)
+#output: category (i.e. protein, spice-sauce)
 def categorize(ingredient_name):
 	for category in food_categories:
 		if db[category].find({"name":ingredient_name}).count() > 0:
 			return category
 	return 'notfound'
+
+#input: ingredient name (i.e. chicken, tofu)
+#output: 1/0/"nothing found" (i.e. 0, 1)
+#only looks through proteins.csv and cooking-liquids.csv
+def is_vegetarian(ingredient_name):
+	for category in ["proteins"]:#, cooking-liquids"]:
+		if db[category].find({"name":ingredient_name}).count() > 0:
+			return db[category].find_one({"name":ingredient_name})["vegetarian"]
+	return "nothing found"
 
 def to_vegetarian(ingredient_name):
 	""
@@ -26,6 +38,12 @@ def to_healthy(ingredient_name):
 	""
 
 def to_unhealthy(ingredient_name):
+	""
+
+def is_action_past_tense(action):
+	""
+
+def find_tool_for_action(action):
 	""
 
 
@@ -69,3 +87,4 @@ def import_foods():
 def main():
 	import_foods()
 main()
+is_vegetarian("beef")
