@@ -107,11 +107,15 @@ def amount_split(str):
 	elif tokens[-2] == ')':
 		measurement = ''.join(tokens[-5:-3])+' '+''.join(tokens[-3:-1])+' '+tokens[-1]
 		tokens = tokens[0:-5]
+	elif tokens[-1] == ')':
+		measurement = ''.join(tokens[-4:-2])+' '+''.join(tokens[-2::])
+		tokens = tokens[0:-4]
 	else:
 		measurement = tokens[-1]
 		tokens = tokens[0:-1]
 	amount = 0
 	for num in tokens:
 		amount = amount + float(fractions.Fraction(num))
-	return [amount,measurement]
-		
+	if measurement!='' and measurement[-1] == 's' and measurement[-2]!='s':
+		measurement = measurement[0:-1]
+	return [amount,measurement]			
