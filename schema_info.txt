@@ -1,0 +1,31 @@
+table name(s)
+	attribute
+	attribute
+	attribute
+
+###################
+changing this file doesn't change the schema. 
+this is purely informational
+###################
+proteins, dairy, cooking-liquids, spices-sauces,vegetables,fruits,starches
+	name
+	vegetarian
+	healthy
+	east-asian
+	indian
+	spanish
+	american
+	italian
+	no-cuisine
+
+actions
+	food-prep
+	past-tense
+	tool
+
+prep-tools
+	names
+	alt-names
+
+cooking-tools
+	names

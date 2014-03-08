@@ -45,13 +45,16 @@ def is_action_past_tense(action):
 		return 1
 	return 0
 
-def find_tool_for_action(action):
+def find_prep_tool_for_action(action):
 	for attr in ["food-prep", "past-tense"]:
 		if db.actions.find({attr:action}).count() > 0:
 			return db.actions.find_one({attr:action})["tool"]
 	return "notfound"
 
-
+def find_action_for_tool(tool):
+	if db.actions.find({"tool":tool}) > 0:
+		return db.actions.find_one({"tool":tool})["food-prep"]
+	return "notfound"
 
 ############################################################################
 ####Back-end Functions
