@@ -15,11 +15,7 @@ def download():
 	for i, worksheet in enumerate(spreadsheet.worksheets()):
 	    filename = str(worksheet)[12:-9] + '.csv'
 	    with open("csv/"+filename, 'wb') as f:
-	    	# try:
     		writer = csv.writer(f)
     		writer.writerows(worksheet.get_all_values())
-	    		# break
-	    	# except UnicodeEncodeError:
-	    	# 	pass
 
 main()
