@@ -49,7 +49,7 @@ def find_tool_for_action(action):
 
 
 ############################################################################
-####Backend Functions
+####Back-end Functions
 ############################################################################
 
 client = MongoClient('localhost', 27017)
