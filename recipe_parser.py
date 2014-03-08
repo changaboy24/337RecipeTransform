@@ -1,4 +1,4 @@
-import nltk, json, re, numpy, urllib2
+import nltk, json, re, numpy, urllib2, fractions
 
 def http_string(url):
 	"Takes a url and returns a string of its contents."
@@ -52,7 +52,8 @@ def ingredients(str):
 		amount = ingredient_amount(section)
 		name = ingredient_name(section)
 		if amount_check(section) and name_check(section):
-			out.append((amount,name))
+			[quantity,measurement] = amount_split(amount)
+			out.append((quantity,measurement,name))
 		index = find_ingredient(str,index)
 	return out
 
@@ -83,5 +84,34 @@ def directions(str):
 		out.append(direction_string(section,index))
 		index = find_direction(section,index)
 	return out
-		
+
+def sentence_tokenize(str):
+	"Uses NLTK sentence tokenizer to tokenize string into sentences."
+	sent_detector = nltk.data.load('tokenizers/punkt/english.pickle')
+	return sent_detector.tokenize(str)
+	
+def directions_steps(str):
+	out = []
+	for step in directions(str):
+		out.extend(sentence_tokenize(step))
+	return out
+	
+def amount_split(str):
+	"Takes a string containing a quantity and a measurement, returning them as two elements in an array."
+	tokens = nltk.word_tokenize(str)
+	if len(tokens) == 1:
+		measurement = ''
+	elif len(tokens) == 2:
+		measurement = tokens[1]
+		tokens = [tokens[0]]
+	elif tokens[-2] == ')':
+		measurement = ''.join(tokens[-5:-3])+' '+''.join(tokens[-3:-1])+' '+tokens[-1]
+		tokens = tokens[0:-5]
+	else:
+		measurement = tokens[-1]
+		tokens = tokens[0:-1]
+	amount = 0
+	for num in tokens:
+		amount = amount + float(fractions.Fraction(num))
+	return [amount,measurement]
 		
