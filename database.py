@@ -11,6 +11,7 @@ def categorize(ingredient_name):
 	for category in food_categories:
 		if db[category].find({"name":ingredient_name}).count() > 0:
 			return category
+	return 'notfound'
 
 def to_vegetarian(ingredient_name):
 	""

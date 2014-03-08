@@ -1,4 +1,4 @@
-import nltk, json, re, numpy, urllib2, fractions
+import nltk, json, re, numpy, urllib2, fractions, database
 
 def http_string(url):
 	"Takes a url and returns a string of its contents."
@@ -118,4 +118,26 @@ def amount_split(str):
 		amount = amount + float(fractions.Fraction(num))
 	if measurement!='' and measurement[-1] == 's' and measurement[-2]!='s':
 		measurement = measurement[0:-1]
-	return [amount,measurement]			
+	return [amount,measurement]
+
+def name_split(str):
+	name = str
+	prep = ''
+	str = str.split(', ')
+	if len(str) == 2:
+		[name,prep]=str
+	[descriptor,name,category] = name_category(name)
+	return [name,descriptor,prep,category]
+
+def name_category(str):
+	tokens = str.split(" ")
+	descriptor = []
+	while len(tokens) != 0:
+		category = database.categorize(' '.join(tokens))
+		if category == 'notfound' and len(tokens) == 1:
+			return ['',str,False]
+		elif category == 'notfound':
+			descriptor.append(tokens[0])
+			tokens = tokens[1::]
+		else:
+			return [' '.join(descriptor),' '.join(tokens),category]
