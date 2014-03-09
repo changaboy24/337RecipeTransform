@@ -118,4 +118,4 @@ def main():
 	import_cooking_tools()
 
 main()
-print find_tool_for_action("blended")
+print find_prep_tool_for_action("blended")

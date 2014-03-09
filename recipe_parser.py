@@ -53,7 +53,8 @@ def ingredients(str):
 		name = ingredient_name(section)
 		if amount_check(section) and name_check(section):
 			[quantity,measurement] = amount_split(amount)
-			out.append((quantity,measurement,name))
+			[name,descriptor,prep,category] = name_split(name)
+			out.append((name,quantity,measurement,descriptor,prep,category))
 		index = find_ingredient(str,index)
 	return out
 
@@ -141,3 +142,12 @@ def name_category(str):
 			tokens = tokens[1::]
 		else:
 			return [' '.join(descriptor),' '.join(tokens),category]
+
+def recipe_name(url):
+	"Returns recipe name from url string."
+	start = url.find('ecipe/')+6
+	url = url[start::]
+	end= url.find('/')
+	name = ' '.join(url[0:end].split('-'))
+	return name
+
