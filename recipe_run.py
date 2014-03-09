@@ -87,10 +87,14 @@ def main ():
 		tool = database.find_prep_tool_for_action(prep)
 		if tool != 'notfound' and tool not in recipe['cooking tools']:
 			recipe['cooking tools'].append(tool)
+	#find all tools implied by actions in directions, adding where appropriate
+	#find all tools mentioned in directions, add to 'cooking tools', and maybe add actions to 'intermediate methods'
+	recipe['cooking tools'].extend(database.detect_tools(recipe['directions']))
+	#make 'cooking tools' a set
+	recipe['cooking tools']= list(set(recipe['cooking tools']))
 	#find cooking method and add to 'cooking method'
-	#start with the directions and the the recipe name, and then move on to the tools if still not found
+	#start with the directions and then move on to the tools if still not found
 	methods = recipe_methods.getDirections(url)
-	methods.extend(recipe_methods.getDirections(recipename))
 	if methods ==[]:
 		for tool in recipe['cooking tools']:
 			method = database.find_method_from_tool(tool)
@@ -98,11 +102,6 @@ def main ():
 				recipe['cooking method'] = method
 	else:
 		recipe['cooking method'] = methods[-1]
-	#find all tools implied by actions in directions, adding where appropriate
-	#find all tools mentioned in directions, add to 'cooking tools', and maybe add actions to 'intermediate methods'
-	recipe['cooking tools'].extend(database.detect_tools(recipe['directions']))
-	#make 'cooking tools' a set
-	recipe['cooking tools']= list(set(recipe['cooking tools'])).remove('')
 	#print initial recipe
 	print 
 	print recipename
