@@ -42,8 +42,8 @@ def to_unhealthy(ingredient_name):
 
 def is_action_past_tense(action):
 	if db.actions.find({"past-tense":action}).count() > 0:
-		return 1
-	return 0
+		return True
+	return False
 
 def find_prep_tool_for_action(action):
 	for attr in ["food-prep", "past-tense"]:

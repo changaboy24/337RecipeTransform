@@ -128,7 +128,45 @@ def name_split(str):
 	if len(str) == 2:
 		[name,prep]=str
 	[descriptor,name,category] = name_category(name)
+	if database.is_action_past_tense(descriptor) and prep == '':
+		[prep,descriptor] = [descriptor,'']
+	elif database.is_action_past_tense(descriptor):
+		[prep,descriptor] = [prep+' '+descriptor,'']
+	not_names = []
+	if category == False:
+		tokens = name.split(' ')
+		cat = ''
+		while len(tokens) > 1:
+			cat = name_split_sub(' '.join(tokens[1::]))
+			if cat != False:
+				name = ' '.join(tokens[1::])
+				not_names.append(tokens[0])
+				category = cat
+				tokens = ''
+			else:
+				not_names.append(tokens[0])
+				tokens = tokens[1::]
+		if cat == category:
+			for word in not_names:
+				if database.is_action_past_tense(word):
+					if prep == '':
+						prep = word
+					else:
+						prep= prep+' '+word
+				else:
+					if descriptor == '':
+						descriptor = word
+					else:
+						descriptor = descriptor + ' ' + word
+	if category == False:
+		[prep,descriptor] = ['','']
+		if len(str) == 2:
+			[name,prep]=str
 	return [name,descriptor,prep,category]
+
+def name_split_sub(str):
+	[descriptor,name,category] = name_category(str)
+	return category
 
 def name_category(str):
 	tokens = str.split(" ")
