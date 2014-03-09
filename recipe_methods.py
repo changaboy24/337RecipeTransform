@@ -17,7 +17,7 @@ title = name[start:end].lstrip().rstrip()
 
 methods = ['saute', 'broil', 'boil', 'poach', 'bake', 'roast', 'grill', 'double boil',
 'pan fry', 'sweat', 'torch', 'flambe', 'blanch', 'braise', 'scald', 'simmer', 
-'steam', 'barbecue', 'fry', 'deep fry']
+'steam', 'barbecue', 'fry', 'deep fry','slow cook']
 
 tools = ['saucepan', 'baking dish', 'casserole dish', 'oven', 'dutch oven', 'pot', 'stove', 'foil', 'skillet',
 'pan', 'frying pan', 'slow cooker', 'grill', 'deep-fryer']

@@ -88,13 +88,37 @@ def main ():
 		if tool != 'notfound' and tool not in recipe['cooking tools']:
 			recipe['cooking tools'].append(tool)
 	#find cooking method and add to 'cooking method'
-	recipe['cooking method'] = recipe_methods.getDirections(url)[-1]
+	#start with the directions and the the recipe name, and then move on to the tools if still not found
+	methods = recipe_methods.getDirections(url)
+	methods.extend(recipe_methods.getDirections(recipename))
+	if methods ==[]:
+		for tool in recipe['cooking tools']:
+			method = database.find_method_from_tool(tool)
+			if method != 'notfound':
+				recipe['cooking method'] = method
+	else:
+		recipe['cooking method'] = methods[-1]
 	#find all tools implied by actions in directions, adding where appropriate
 	#find all tools mentioned in directions, add to 'cooking tools', and maybe add actions to 'intermediate methods'
 	recipe['cooking tools'].extend(database.detect_tools(recipe['directions']))
 	#make 'cooking tools' a set
-	recipe['cooking tools']= list(set(recipe['cooking tools']))
-	
+	recipe['cooking tools']= list(set(recipe['cooking tools'])).remove('')
+	#print initial recipe
+	print 
+	print recipename
+	print '-----------------------'
+	print
+	print 'Ingredients'
+	print '------------'
+	for ingredient in recipe['ingredients']:
+		out = ingredient_display(ingredient)
+		print ' '.join(out)
+	print
+	print 'Directions'
+	print '------------'
+	for (num,step) in enumerate(recipe['directions']):
+		print '{}. {:<30}'.format(str(num+1),step)
+		print
 	#print table of transforms and codes
 	print
 	print '{:<18} {:<18}'.format('Transform','Code')
@@ -141,6 +165,7 @@ def main ():
 			recipe['directions'][count] = step.replace(ingredient,replacement_names[ingredient])
 	print
 	print transform_codes[code] + ' ' + recipename
+	print '-----------------------'
 	print
 	print 'Ingredients'
 	print '------------'
