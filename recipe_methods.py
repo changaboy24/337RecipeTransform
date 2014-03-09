@@ -1,4 +1,4 @@
-from recipe import *
+from recipe_parser import *
 from string import *
 import urllib2
 from bs4 import BeautifulSoup
@@ -49,9 +49,7 @@ def getDirections(recipe):
 		if y != None and y not in tool:
 			tool.append(y)
 			
-	print "\n"
-	print "Main Cooking Method(s) for "+title+ " is "+str(method)
-	print "Required cooking tools: " + str(tool)
+	return method
 
 def searchMethod(recipe):
 	""" search the recipe for a cooking method,
@@ -84,6 +82,3 @@ def dePunc(rawword):
     L = [ c for c in rawword if 'A' <= c <= 'Z' or 'a' <= c <= 'z' ]
     word = ''.join(L)
     return word
-
-
-print getDirections(allrecipes)

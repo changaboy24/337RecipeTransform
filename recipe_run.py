@@ -1,4 +1,4 @@
-import recipe_parser, database
+import recipe_parser, database, recipe_methods
 
 #model of recipe dictionary
 #
@@ -87,7 +87,8 @@ def main ():
 		tool = database.find_prep_tool_for_action(prep)
 		if tool != 'notfound' and tool not in recipe['cooking tools']:
 			recipe['cooking tools'].append(tool)
-			#find cooking method and add to 'cooking method'
+	#find cooking method and add to 'cooking method'
+	recipe['cooking method'] = recipe_methods.getDirections(url)[-1]
 	#find all tools implied by actions in directions, adding where appropriate
 	#find all tools mentioned in directions, add to 'cooking tools', and maybe add actions to 'intermediate methods'
 	recipe['cooking tools'].extend(database.detect_tools(recipe['directions']))
