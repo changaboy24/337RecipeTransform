@@ -131,10 +131,11 @@ def put_into_db(csv_name, attributes):
 
 def find_replacement(ingredient_name, transform, value):
 	category = categorize(ingredient_name)
-	count = db[category].find({transform:str(value)}).count()
+	value = str(value).lower()
+	count = db[category].find({transform:value).count()
 	random_num = random.randint(0,count)
 	if count > 0:
-		return db[category].find({transform:str(value)}).limit(-1).skip(random_num).next()['name']
+		return db[category].find({transform:value}).limit(-1).skip(random_num).next()['name']
 	return ingredient_name
 
 def main():
