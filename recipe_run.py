@@ -1,4 +1,4 @@
-import recipe_parser
+import recipe_parser, database
 
 #model of recipe dictionary
 #
@@ -26,7 +26,7 @@ transform_codes = {
 	'lh':'Less Healthy',
 	'a':'American',
 	'e':'East-Asian',
-	'm':'Mexican',
+	's':'Spanish',
 	'in':'Indian',
 	'it':'Italian'}
 
@@ -73,7 +73,7 @@ def ingredient_display(ingredient):
 
 	
 def main ():
-	url = input('Enter URL to an AllRecipes recipe: ')
+	url = raw_input('Enter URL to an AllRecipes recipe: ')
 	recipe = {'ingredients':[]}
 	recipename = recipe_parser.recipe_name(url)
 	contents = recipe_parser.http_string(url)
@@ -96,9 +96,34 @@ def main ():
 		print '{:<18} {:<18}'.format(transform_codes[code],code)
 	print
 	prompt = 'How would you like to change ' + recipename + ' (enter code): '
-	transform = input(prompt)
+	transform = raw_input(prompt)
+
 	#for each ingredient check if it fits transform, if not substitute and update 'name' in 'ingredients'
 		#also then update directions to reflect substitution, might need to order by longest name to avoid bad subs
+	replacement_names = {}
+	for ingredient in recipe["ingredients"]:
+		if ingredient["category"] != False:
+			original_name = ingredient["name"]
+			if transform=="v":
+				ingredient["name"]=database.to_vegetarian(ingredient["name"])
+			elif transform=="nv":
+				ingredient["name"]=database.to_meat(ingredient["name"])
+			elif transform=="h":
+				ingredient["name"]=database.to_healthy(ingredient["name"])
+			elif transform=="lh":
+				ingredient["name"]=database.to_unhealthy(ingredient["name"])
+			elif transform=="a":
+				ingredient["name"]=database.to_cuisine("american",ingredient["name"])
+			elif transform=="e":
+				ingredient["name"]=database.to_cuisine("east-asian",ingredient["name"])
+			elif transform=="s":
+				ingredient["name"]=database.to_cuisine("spanish",ingredient["name"])
+			elif transform=="in":
+				ingredient["name"]=database.to_cuisine("indian",ingredient["name"])
+			elif transform=="it":
+				ingredient["name"]=database.to_cuisine("italian",ingredient["name"])
+			replacement_names[original_name] = ingredient["name"]
+		
 	print
 	print transform_codes[code] + ' ' + recipename
 	print
@@ -113,3 +138,4 @@ def main ():
 	for (num,step) in enumerate(recipe['directions']):
 		print '{}. {:<30}'.format(str(num+1),step)
 		print
+main()

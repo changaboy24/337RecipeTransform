@@ -1,4 +1,6 @@
-import csv, gspread, getpass,re
+import csv, gspread, getpass
+
+""" this python script downloads our google spreadsheet that all our data is in """
 
 def download():
 	print "Sorry. Google email+pass required to pull csv's"

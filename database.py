@@ -109,7 +109,7 @@ def find_replacement(ingredient_name, transform, value):
 	category = categorize(ingredient_name)
 	if db[category].find({transform:str(value)}).count() > 0:
 		return db[category].find_one({transform:str(value)})['name']
-	return 'notfound'
+	return ingredient_name
 
 def main():
 	import_foods()
