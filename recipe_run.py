@@ -163,7 +163,7 @@ def main ():
 		for (count,step) in enumerate(recipe['directions']):
 			recipe['directions'][count] = step.replace(ingredient,replacement_names[ingredient])
 	print
-	print transform_codes[code] + ' ' + recipename
+	print transform_codes[transform] + ' ' + recipename
 	print '-----------------------'
 	print
 	print 'Ingredients'
