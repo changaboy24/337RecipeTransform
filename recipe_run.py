@@ -123,7 +123,15 @@ def main ():
 			elif transform=="it":
 				ingredient["name"]=database.to_cuisine("italian",ingredient["name"])
 			replacement_names[original_name] = ingredient["name"]
-		
+	ordering = []
+	for ingredient in replacement_names.keys():
+		length = len(ingredient.split(' '))
+		ordering.append([length,ingredient])
+	ordering = sorted(ordering,reverse=True)
+	#from longest ingredient name to shortest, replace the name with the new ingredient in each direction step
+	for [num, ingredient] in ordering:
+		for step in recipe['directions']:
+			step.replace(ingredient,replacement_names[ingredient])
 	print
 	print transform_codes[code] + ' ' + recipename
 	print
