@@ -8,26 +8,26 @@ changing this file doesn't change the schema.
 this is purely informational
 ###################
 proteins, dairy, cooking-liquids, spices-sauces,vegetables,fruits,starches
-	name
-	vegetarian
-	healthy
-	east-asian
-	indian
-	spanish
-	american
-	italian
-	no-cuisine
+	name (text)
+	vegetarian (1 or '')
+	healthy	(1 or '')
+	east-asian	(1 or '')
+	indian (1 or '')
+	spanish (1 or '')
+	american (1 or '')
+	italian (1 or '')
+	no-cuisine (1 or '')
 
 actions
-	food-prep
-	past-tense
-	tool
+	food-prep (text)
+	past-tense (text) 
+	tool (text)
 
 prep-tools
-	tool
-	alt-names
+	tool (text)
+	alt-names (text)
 
 cooking-tools
-	tool
-	method
-	keyword
+	tool (text)
+	method (text)
+	keyword (text)
