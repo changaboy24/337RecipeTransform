@@ -31,7 +31,7 @@ transform_codes = {
 	'it':'Italian'}
 
 def ingredient_display(ingredient):
-	out = [str(ingredient['quantity'])]
+	out = ['{0:.2f}'.format(ingredient['quantity'])]
 	if ingredient['measurement'] != '':
 		out.append(ingredient['measurement'])
 	if ingredient['descriptor'] != '':
@@ -44,6 +44,7 @@ def ingredient_display(ingredient):
 	
 def main ():
 	url = input('Enter URL to an AllRecipes recipe: ')
+	recipe = {'ingredients':[]}
 	recipename = recipe_parser.recipe_name(url)
 	contents = recipe_parser.http_string(url)
 	recipe['name'] = recipename
@@ -63,17 +64,22 @@ def main ():
 	print '{:<18} {:<18}'.format('------------','------------')
 	for code in sorted(transform_codes.keys()):
 		print '{:<18} {:<18}'.format(transform_codes[code],code)
+	print
 	prompt = 'How would you like to change ' + recipename + ' (enter code): '
 	transform = input(prompt)
 	#for each ingredient check if it fits transform, if not substitute and update 'name' in 'ingredients'
 		#also then update directions to reflect substitution, might need to order by longest name to avoid bad subs
+	print
 	print transform_codes[code] + ' ' + recipename
 	print
 	print 'Ingredients'
+	print '------------'
 	for ingredient in recipe['ingredients']:
 		out = ingredient_display(ingredient)
 		print ' '.join(out)
 	print
 	print 'Directions'
-	for step in recipe['directions']:
-		print '{:<30}'.format(step)
+	print '------------'
+	for (num,step) in enumerate(recipe['directions']):
+		print '{}. {:<30}'.format(str(num+1),step)
+		print
