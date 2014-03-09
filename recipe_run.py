@@ -74,7 +74,7 @@ def ingredient_display(ingredient):
 	
 def main ():
 	url = raw_input('Enter URL to an AllRecipes recipe: ')
-	recipe = {'ingredients':[]}
+	recipe = {'ingredients':[],'cooking tools':[]}
 	recipename = recipe_parser.recipe_name(url)
 	contents = recipe_parser.http_string(url)
 	recipe['name'] = recipename
@@ -82,12 +82,18 @@ def main ():
 	ingredients = recipe_parser.ingredients(contents)
 	for ingredient in ingredients:
 		[iname,quantity,measure,descriptor,prep,category] = ingredient
-		recipe['ingredients'].append({'name':iname,'quantity':quantity,'measurement':measure,'descriptor':descriptor,'preparation':prep, 'category':category})
-	#find cooking method and add to 'cooking method'
-	#find all tools implied by prep fields, add to 'cooking tools', and maybe add actions to 'intermediate methods'
+		recipe['ingredients'].append({'name':iname.lower(),'quantity':quantity,'measurement':measure,'descriptor':descriptor,'preparation':prep, 'category':category})
+		#find all tools implied by prep fields, add to 'cooking tools', and maybe add actions to 'intermediate methods'
+		tool = database.find_prep_tool_for_action(prep)
+		if tool != 'notfound' and tool not in recipe['cooking tools']:
+			recipe['cooking tools'].append(tool)
+			#find cooking method and add to 'cooking method'
 	#find all tools implied by actions in directions, adding where appropriate
 	#find all tools mentioned in directions, add to 'cooking tools', and maybe add actions to 'intermediate methods'
+	recipe['cooking tools'].extend(database.detect_tools(recipe['directions']))
 	#make 'cooking tools' a set
+	recipe['cooking tools']= list(set(recipe['cooking tools']))
+	
 	#print table of transforms and codes
 	print
 	print '{:<18} {:<18}'.format('Transform','Code')
@@ -130,8 +136,8 @@ def main ():
 	ordering = sorted(ordering,reverse=True)
 	#from longest ingredient name to shortest, replace the name with the new ingredient in each direction step
 	for [num, ingredient] in ordering:
-		for step in recipe['directions']:
-			step.replace(ingredient,replacement_names[ingredient])
+		for (count,step) in enumerate(recipe['directions']):
+			recipe['directions'][count] = step.replace(ingredient,replacement_names[ingredient])
 	print
 	print transform_codes[code] + ' ' + recipename
 	print
@@ -146,4 +152,4 @@ def main ():
 	for (num,step) in enumerate(recipe['directions']):
 		print '{}. {:<30}'.format(str(num+1),step)
 		print
-main()
+	return recipe

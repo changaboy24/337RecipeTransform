@@ -55,6 +55,30 @@ def find_action_for_tool(tool):
 	if db.actions.find({"tool":tool}) > 0:
 		return db.actions.find_one({"tool":tool})["food-prep"]
 	return "notfound"
+	
+def detect_tools(directions):
+	tool_array = []
+	all_tools = []
+	all_actions = []
+	collections = ["actions","prep-tools","cooking-tools"]
+	for collection in collections:
+		for row in db[collection].find():
+			if len(row["tool"])> 0:
+				all_tools.append(row["tool"].lower())	
+			if collection == "actions":
+				all_actions.append(row["food-prep"])
+			
+	for tool in all_tools:
+		for direction in directions:
+			if tool in direction and tool not in tool_array:
+				tool_array.append(tool)
+	
+	for action in all_actions:
+		for direction in directions:
+			tool = find_prep_tool_for_action(action)
+			if action in direction and tool not in tool_array and len(tool)>0:
+				tool_array.append(find_prep_tool_for_action(action))
+	return tool_array
 
 ############################################################################
 ####Back-end Functions
@@ -87,11 +111,11 @@ def import_actions():
 	put_into_db("actions",attributes)
 
 def import_prep_tools():
-	attributes = ["names","alt-names"]
+	attributes = ["tool","alt-names"]
 	put_into_db("prep-tools",attributes)
 
 def import_cooking_tools():
-	attributes = ["names"]
+	attributes = ["tool"]
 	put_into_db("cooking-tools",attributes)
 
 def put_into_db(csv_name, attributes):
@@ -118,4 +142,3 @@ def main():
 	import_cooking_tools()
 
 main()
-print find_prep_tool_for_action("blended")
