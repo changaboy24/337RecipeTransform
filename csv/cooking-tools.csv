@@ -1,8 +1,21 @@
-""
-saucepan
-baking dish
-oven
-dutch oven
-pot
-stove
-foil
+Tool,Method,Keywords (for disambiguation)
+saucepan,saute,oil
+saucepan,simmer,
+baking dish,bake,
+casserole dish,bake,
+oven,bake,bake
+oven,roast,"pan, meat"
+dutch oven,simmer,water
+dutch oven,bake,
+pot,boil,
+pot,steaming,
+skillet,simmer,medium heat
+skillet ,fry,"fry, oil"
+pan,fry,
+frying pan,fry,
+slow cooker,simmer,
+slow cooker,roast,
+grill,grill,
+deep-fryer,fry,
+stockpot,boil,
+baking sheet,bake,

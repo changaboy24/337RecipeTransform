@@ -1,4 +1,4 @@
-import pymongo, csv
+import pymongo, csv, random
 from pymongo import MongoClient
 
 
@@ -29,7 +29,7 @@ def to_vegetarian(ingredient_name):
 	return find_replacement(ingredient_name, "vegetarian",1)
 
 def to_meat(ingredient_name):
-	return find_replacement(ingredient_name, "vegetarian",0)
+	return find_replacement(ingredient_name, "vegetarian","")
 
 def to_cuisine(cuisine, ingredient_name):
 	return find_replacement(ingredient_name, cuisine,1)
@@ -38,7 +38,7 @@ def to_healthy(ingredient_name):
 	return find_replacement(ingredient_name, "healthy",1)
 
 def to_unhealthy(ingredient_name):
-	return find_replacement(ingredient_name, "unhealthy",1)
+	return find_replacement(ingredient_name, "healthy","")
 
 def is_action_past_tense(action):
 	if db.actions.find({"past-tense":action}).count() > 0:
@@ -115,7 +115,7 @@ def import_prep_tools():
 	put_into_db("prep-tools",attributes)
 
 def import_cooking_tools():
-	attributes = ["tool"]
+	attributes = ["tool","method","keywords"]
 	put_into_db("cooking-tools",attributes)
 
 def put_into_db(csv_name, attributes):
@@ -131,8 +131,10 @@ def put_into_db(csv_name, attributes):
 
 def find_replacement(ingredient_name, transform, value):
 	category = categorize(ingredient_name)
-	if db[category].find({transform:str(value)}).count() > 0:
-		return db[category].find_one({transform:str(value)})['name']
+	count = db[category].find({transform:str(value)}).count()
+	random_num = random.randint(0,count)
+	if count > 0:
+		return db[category].find({transform:str(value)}).limit(-1).skip(random_num).next()['name']
 	return ingredient_name
 
 def main():
