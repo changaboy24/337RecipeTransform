@@ -1,13 +1,18 @@
 337RecipeTransform
 ==================
-Python 2.7.5
 
-libararies use:
+Running with Python 2.7.5
+
+Python libraries use:
+
 pymongo
 	pip install pymongo
+
 mongodb
 	brew install mongodb
-nltk
+
+nltk, pyyaml
+	pip install -U pyyaml nltk
 
 gspread
 	pip install gspread

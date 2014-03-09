@@ -24,8 +24,10 @@ actions
 	tool
 
 prep-tools
-	names
+	tool
 	alt-names
 
 cooking-tools
-	names
+	tool
+	method
+	keyword

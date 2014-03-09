@@ -52,8 +52,13 @@ def find_prep_tool_for_action(action):
 	return "notfound"
 
 def find_action_for_tool(tool):
-	if db.actions.find({"tool":tool}) > 0:
+	if db.actions.find({"tool":tool}).count() > 0:
 		return db.actions.find_one({"tool":tool})["food-prep"]
+	return "notfound"
+
+def find_method_from_tool(tool):
+	if db["cooking-tools"].find({"tool":tool}).count() > 0:
+		return db["cooking-tools"].find_one({"tool":tool})["method"]
 	return "notfound"
 	
 def detect_tools(directions):
@@ -132,7 +137,7 @@ def put_into_db(csv_name, attributes):
 def find_replacement(ingredient_name, transform, value):
 	category = categorize(ingredient_name)
 	value = str(value).lower()
-	count = db[category].find({transform:value).count()
+	count = db[category].find({transform:value}).count()
 	random_num = random.randint(0,count)
 	if count > 0:
 		return db[category].find({transform:value}).limit(-1).skip(random_num).next()['name']
@@ -145,3 +150,4 @@ def main():
 	import_cooking_tools()
 
 main()
+find_method_from_tool("saucepan")
