@@ -32,7 +32,36 @@ transform_codes = {
 
 def ingredient_display(ingredient):
 	out = ['{0:.2f}'.format(ingredient['quantity'])]
-	if ingredient['measurement'] != '':
+	if out[0][-3::]=='.00':
+		out[0] = out[0][0:-3]
+	elif out[0][-3::]=='.25':
+		if out[0][0]=='0':
+			out[0] = '1/4'
+		else:
+			out[0] = out[0][0:-3]+' 1/4'
+	elif out[0][-3::]=='.33':
+		if out[0][0]=='0':
+			out[0] = '1/3'
+		else:
+			out[0] = out[0][0:-3]+' 1/3'
+	elif out[0][-3::]=='.50':
+		if out[0][0]=='0':
+			out[0] = '1/2'
+		else:
+			out[0] = out[0][0:-3]+' 1/2'
+	elif out[0][-3::]=='.67':
+		if out[0][0]=='0':
+			out[0] = '2/3'
+		else:
+			out[0] = out[0][0:-3]+' 2/3'
+	elif out[0][-3::]=='.75':
+		if out[0][0]=='0':
+			out[0] = '3/4'
+		else:
+			out[0] = out[0][0:-3]+' 3/4'
+	if ingredient['measurement'] != '' and ingredient['quantity']>1:
+		out.append(ingredient['measurement']+'s')
+	elif ingredient['measurement']!= '':
 		out.append(ingredient['measurement'])
 	if ingredient['descriptor'] != '':
 		out.append(ingredient['descriptor'])
@@ -41,6 +70,7 @@ def ingredient_display(ingredient):
 		out.append('-')
 		out.append(ingredient['preparation'])
 	return out
+
 	
 def main ():
 	url = input('Enter URL to an AllRecipes recipe: ')
