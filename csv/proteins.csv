@@ -1,4 +1,4 @@
-Ingredient Name,Vegetarian (y/n),Healthy,East-Asian,Indian,Mexican/Spanish,American,Italian,No Cuisine
+ingredient name,Vegetarian (y/n),Healthy,East-Asian,Indian,Mexican/Spanish,American,Italian,No Cuisine
 beef,,,,,,1,,
 ham,,,,,,1,,
 lamb,,,1,1,,,,
@@ -21,22 +21,22 @@ lean ground turkey,,1,,,,,,1
 ground beef,,,,,,,,1
 lean ground beef,,1,,,,,,1
 sausage,,,,,,1,,
-Italian sausage,,,,,,,1,
-Cornish Hen,,,,,,,,1
-Dove,,,,,,,,1
-Duck,,,,,,,,1
-Emu,,,,,,,,1
-Goose,,,,,,,,1
-Grouse,,,,,,,,1
-Guinea fowl,,,,,,,,1
-New World quail,,,,,,,,1
-Ostrich,,,,,,,,1
-Partridge,,,,,,,,1
-Pheasant,,,,,,,,1
-Pigeon,,,,,,,,1
-Quail,,,,,,,,1
-Turkey,,,,,,,,1
-tofu,,1,,,,,,1
+italian sausage,,,,,,,1,
+cornish hen,,,,,,,,1
+dove,,,,,,,,1
+duck,,,,,,,,1
+emu,,,,,,,,1
+goose,,,,,,,,1
+grouse,,,,,,,,1
+guinea fowl,,,,,,,,1
+new world quail,,,,,,,,1
+ostrich,,,,,,,,1
+partridge,,,,,,,,1
+pheasant,,,,,,,,1
+pigeon,,,,,,,,1
+quail,,,,,,,,1
+turkey,,,,,,,,1
+tofu,1,1,,,,,,1
 tempeh,1,1,,,,,,1
 texturized vegetable protein,1,1,,,,,,1
 black beans,1,1,,,,,,1
@@ -86,26 +86,26 @@ calamari,,,,,,,,1
 anchovies,,,,,,,,1
 clams,,,,,,,,1
 sardines,,,,,,,,1
-Anchovy,,,,,,,,1
-Basa,,,,,,,,1
-Bass,,,,,,,,1
-Carp,,,,,,,,1
-Crappie,,,,,,,,1
-Eel,,,,,,,,1
-Grouper,,,,,,,,1
-Haddock,,,,,,,,1
-Halibut,,,,,,,,1
-Kingfish,,,,,,,,1
-Mahi Mahi,,,,,,,,1
-Marlin,,,,,,,,1
-Orange Roughy,,,,,,,,1
-Perch,,,,,,,,1
-Pike,,,,,,,,1
-Pollock,,,,,,,,1
-Sardine,,,,,,,,1
-Snapper,,,,,,,,1
-Sole,,,,,,,,1
-Walleye,,,,,,,,1
+anchovy,,,,,,,,1
+basa,,,,,,,,1
+bass,,,,,,,,1
+carp,,,,,,,,1
+crappie,,,,,,,,1
+eel,,,,,,,,1
+grouper,,,,,,,,1
+haddock,,,,,,,,1
+halibut,,,,,,,,1
+kingfish,,,,,,,,1
+mahi mahi,,,,,,,,1
+marlin,,,,,,,,1
+orange roughy,,,,,,,,1
+perch,,,,,,,,1
+pike,,,,,,,,1
+pollock,,,,,,,,1
+sardine,,,,,,,,1
+snapper,,,,,,,,1
+sole,,,,,,,,1
+walleye,,,,,,,,1
 almonds,1,,,,,,,1
 cashews,1,,,,,,,1
 hazelnuts,1,,,,,,,1
@@ -119,6 +119,5 @@ pumpkin seeds,1,,,,,,,1
 sesame seeds,1,,,,,,,1
 sunflower seeds,1,,,,,,,1
 walnuts,1,,,,,,,1
-,1,,,,,,,1
 pecans,1,,,,,,,1
 bacon,,,,,,1,,

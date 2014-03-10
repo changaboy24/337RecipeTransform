@@ -116,7 +116,8 @@ def import_actions():
 	put_into_db("actions",attributes)
 
 def import_prep_tools():
-	attributes = ["tool","alt-names"]
+	print "prep tools"
+	attributes = ["tool","alt-names","bleh"]
 	put_into_db("prep-tools",attributes)
 
 def import_cooking_tools():
@@ -150,4 +151,3 @@ def main():
 	import_cooking_tools()
 
 main()
-find_method_from_tool("saucepan")

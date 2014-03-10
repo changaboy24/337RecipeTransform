@@ -8,7 +8,7 @@ oven,roast,"pan, meat"
 dutch oven,simmer,water
 dutch oven,bake,
 pot,boil,
-pot,steaming,
+pot,steaming,water
 skillet,simmer,medium heat
 skillet ,fry,"fry, oil"
 pan,fry,
@@ -19,3 +19,5 @@ grill,grill,
 deep-fryer,fry,
 stockpot,boil,
 baking sheet,bake,
+slow cooker,slow cook,
+crock pot,slow cook,

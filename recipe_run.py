@@ -71,22 +71,21 @@ def ingredient_display(ingredient):
 		out.append(ingredient['preparation'])
 	return out
 
-	
-def main ():
-	url = raw_input('Enter URL to an AllRecipes recipe: ')
+def make_recipe(url):
 	recipe = {'ingredients':[],'cooking tools':[]}
-	recipename = recipe_parser.recipe_name(url)
 	contents = recipe_parser.http_string(url)
-	recipe['name'] = recipename
+	recipe['name'] = recipe_parser.recipe_name(url)
 	recipe['directions'] = recipe_parser.directions(contents)
 	ingredients = recipe_parser.ingredients(contents)
 	for ingredient in ingredients:
 		[iname,quantity,measure,descriptor,prep,category] = ingredient
 		recipe['ingredients'].append({'name':iname.lower(),'quantity':quantity,'measurement':measure,'descriptor':descriptor,'preparation':prep, 'category':category})
+		
 		#find all tools implied by prep fields, add to 'cooking tools', and maybe add actions to 'intermediate methods'
 		tool = database.find_prep_tool_for_action(prep)
 		if tool != 'notfound' and tool not in recipe['cooking tools']:
 			recipe['cooking tools'].append(tool)
+	
 	#find all tools implied by actions in directions, adding where appropriate
 	#find all tools mentioned in directions, add to 'cooking tools', and maybe add actions to 'intermediate methods'
 	recipe['cooking tools'].extend(database.detect_tools(recipe['directions']))
@@ -102,9 +101,11 @@ def main ():
 				recipe['cooking method'] = method
 	else:
 		recipe['cooking method'] = methods[-1]
-	#print initial recipe
+	return recipe
+
+def print_recipe(recipe):
 	print 
-	print recipename
+	print recipe['name']
 	print '-----------------------'
 	print
 	print 'Ingredients'
@@ -118,6 +119,8 @@ def main ():
 	for (num,step) in enumerate(recipe['directions']):
 		print '{}. {:<30}'.format(str(num+1),step)
 		print
+
+def print_transform_prompt():
 	#print table of transforms and codes
 	print
 	print '{:<18} {:<18}'.format('Transform','Code')
@@ -125,11 +128,8 @@ def main ():
 	for code in sorted(transform_codes.keys()):
 		print '{:<18} {:<18}'.format(transform_codes[code],code)
 	print
-	prompt = 'How would you like to change ' + recipename + ' (enter code): '
-	transform = raw_input(prompt)
 
-	#for each ingredient check if it fits transform, if not substitute and update 'name' in 'ingredients'
-		#also then update directions to reflect substitution, might need to order by longest name to avoid bad subs
+def transform_recipe(recipe, transform):
 	replacement_names = {}
 	for ingredient in recipe["ingredients"]:
 		if ingredient["category"] != False:
@@ -162,19 +162,19 @@ def main ():
 	for [num, ingredient] in ordering:
 		for (count,step) in enumerate(recipe['directions']):
 			recipe['directions'][count] = step.replace(ingredient,replacement_names[ingredient])
-	print
-	print transform_codes[transform] + ' ' + recipename
-	print '-----------------------'
-	print
-	print 'Ingredients'
-	print '------------'
-	for ingredient in recipe['ingredients']:
-		out = ingredient_display(ingredient)
-		print ' '.join(out)
-	print
-	print 'Directions'
-	print '------------'
-	for (num,step) in enumerate(recipe['directions']):
-		print '{}. {:<30}'.format(str(num+1),step)
-		print
+
 	return recipe
+
+def main ():
+	url = raw_input('Enter URL to an AllRecipes recipe: ')
+	recipe = make_recipe(url)
+	print_recipe(recipe)
+	print_transform_prompt()
+
+	transform = raw_input('How would you like to change ' + recipe["name"] + ' (enter code): ')
+
+	recipe = transform_recipe(recipe, transform)
+	print_recipe(recipe)
+
+	return recipe
+main()
