@@ -85,6 +85,15 @@ def detect_tools(directions):
 				tool_array.append(find_prep_tool_for_action(action))
 	return tool_array
 
+def get_tools_and_methods():
+	methods = []
+	tools = []
+
+	for row in db["cooking-tools"].find():
+		methods.append(row["method"])
+		tools.append(row["tool"])
+	return methods, tools
+
 ############################################################################
 ####Back-end Functions
 ############################################################################
@@ -116,7 +125,6 @@ def import_actions():
 	put_into_db("actions",attributes)
 
 def import_prep_tools():
-	print "prep tools"
 	attributes = ["tool","alt-names","bleh"]
 	put_into_db("prep-tools",attributes)
 

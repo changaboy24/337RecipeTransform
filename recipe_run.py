@@ -93,7 +93,7 @@ def make_recipe(url):
 	recipe['cooking tools']= list(set(recipe['cooking tools']))
 	#find cooking method and add to 'cooking method'
 	#start with the directions and then move on to the tools if still not found
-	methods = recipe_methods.getDirections(url)
+	methods = recipe_methods.getMethods(url)
 	if methods ==[]:
 		for tool in recipe['cooking tools']:
 			method = database.find_method_from_tool(tool)
@@ -168,13 +168,13 @@ def transform_recipe(recipe, transform):
 def main ():
 	url = raw_input('Enter URL to an AllRecipes recipe: ')
 	recipe = make_recipe(url)
-	print_recipe(recipe)
+	# print_recipe(recipe)
 	print_transform_prompt()
 
 	transform = raw_input('How would you like to change ' + recipe["name"] + ' (enter code): ')
 
 	recipe = transform_recipe(recipe, transform)
-	print_recipe(recipe)
+	# print_recipe(recipe)
 
 	return recipe
 main()
