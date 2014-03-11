@@ -16,3 +16,6 @@ nltk, pyyaml
 
 gspread
 	pip install gspread
+
+termcolor
+	pip install termcolor

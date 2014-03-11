@@ -1,4 +1,5 @@
 import recipe_parser, database, recipe_methods
+from termcolor import colored
 
 #model of recipe dictionary
 #
@@ -105,16 +106,16 @@ def make_recipe(url):
 
 def print_recipe(recipe):
 	print 
-	print recipe['name']
+	print colored(recipe['name'],"blue")
 	print '-----------------------'
 	print
-	print 'Ingredients'
+	print colored('Ingredients',"blue")
 	print '------------'
 	for ingredient in recipe['ingredients']:
 		out = ingredient_display(ingredient)
 		print ' '.join(out)
 	print
-	print 'Directions'
+	print colored('Directions',"blue")
 	print '------------'
 	for (num,step) in enumerate(recipe['directions']):
 		print '{}. {:<30}'.format(str(num+1),step)
@@ -152,7 +153,11 @@ def transform_recipe(recipe, transform):
 				ingredient["name"]=database.to_cuisine("indian",ingredient["name"])
 			elif transform=="it":
 				ingredient["name"]=database.to_cuisine("italian",ingredient["name"])
+
+			if ingredient["name"] != original_name:
+				ingredient["name"] = colored(ingredient["name"],"red")
 			replacement_names[original_name] = ingredient["name"]
+
 	ordering = []
 	for ingredient in replacement_names.keys():
 		length = len(ingredient.split(' '))
@@ -168,13 +173,13 @@ def transform_recipe(recipe, transform):
 def main ():
 	url = raw_input('Enter URL to an AllRecipes recipe: ')
 	recipe = make_recipe(url)
-	# print_recipe(recipe)
+	print_recipe(recipe)
 	print_transform_prompt()
 
 	transform = raw_input('How would you like to change ' + recipe["name"] + ' (enter code): ')
 
 	recipe = transform_recipe(recipe, transform)
-	# print_recipe(recipe)
+	print_recipe(recipe)
 
 	return recipe
 main()
