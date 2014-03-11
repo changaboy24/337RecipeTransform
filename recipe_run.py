@@ -1,4 +1,4 @@
-import recipe_parser, database, recipe_methods
+import recipe_parser, database, recipe_methods, pprint
 from termcolor import colored
 
 #model of recipe dictionary
@@ -72,17 +72,19 @@ def ingredient_display(ingredient):
 		out.append(ingredient['preparation'])
 	return out
 
-def make_recipe(url):
+def make_recipe_dict(url):
 	recipe = {'ingredients':[],'cooking tools':[]}
 	contents = recipe_parser.http_string(url)
 	recipe['name'] = recipe_parser.recipe_name(url)
 	recipe['directions'] = recipe_parser.directions(contents)
+
+
 	ingredients = recipe_parser.ingredients(contents)
 	for ingredient in ingredients:
 		[iname,quantity,measure,descriptor,prep,category] = ingredient
 		recipe['ingredients'].append({'name':iname.lower(),'quantity':quantity,'measurement':measure,'descriptor':descriptor,'preparation':prep, 'category':category})
 		
-		#find all tools implied by prep fields, add to 'cooking tools', and maybe add actions to 'intermediate methods'
+		#find all tools implied by prep fields, add to 'cooking tools', (TODO:)and maybe add actions to 'intermediate methods'
 		tool = database.find_prep_tool_for_action(prep)
 		if tool != 'notfound' and tool not in recipe['cooking tools']:
 			recipe['cooking tools'].append(tool)
@@ -101,21 +103,23 @@ def make_recipe(url):
 			if method != 'notfound':
 				recipe['cooking method'] = method
 	else:
+		#grab last one because it is most likely to be the main cooking method
 		recipe['cooking method'] = methods[-1]
 	return recipe
 
 def print_recipe(recipe):
+	title_color = "green"
 	print 
-	print colored(recipe['name'],"blue")
+	print colored(recipe['name'],title_color)
 	print '-----------------------'
 	print
-	print colored('Ingredients',"blue")
+	print colored('Ingredients',title_color)
 	print '------------'
 	for ingredient in recipe['ingredients']:
 		out = ingredient_display(ingredient)
 		print ' '.join(out)
 	print
-	print colored('Directions',"blue")
+	print colored('Directions',title_color)
 	print '------------'
 	for (num,step) in enumerate(recipe['directions']):
 		print '{}. {:<30}'.format(str(num+1),step)
@@ -154,6 +158,7 @@ def transform_recipe(recipe, transform):
 			elif transform=="it":
 				ingredient["name"]=database.to_cuisine("italian",ingredient["name"])
 
+			##if there was a change, color the text red
 			if ingredient["name"] != original_name:
 				ingredient["name"] = colored(ingredient["name"],"red")
 			replacement_names[original_name] = ingredient["name"]
@@ -170,16 +175,20 @@ def transform_recipe(recipe, transform):
 
 	return recipe
 
+def pretty_print_dict(dictionary):
+	pprint.PrettyPrinter(indent=4).pprint(dictionary)
+
 def main ():
 	url = raw_input('Enter URL to an AllRecipes recipe: ')
-	recipe = make_recipe(url)
+	recipe = make_recipe_dict(url)
 	print_recipe(recipe)
 	print_transform_prompt()
 
 	transform = raw_input('How would you like to change ' + recipe["name"] + ' (enter code): ')
-
 	recipe = transform_recipe(recipe, transform)
+
+	print "\n"+colored(transform_codes[transform],"blue")
 	print_recipe(recipe)
 
-	return recipe
+	# pretty_print_dict(recipe)
 main()
