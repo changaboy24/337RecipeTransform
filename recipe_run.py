@@ -187,7 +187,7 @@ def main ():
 	transform = raw_input('How would you like to change ' + recipe["name"] + ' (enter code): ')
 	recipe = transform_recipe(recipe, transform)
 
-	print "\n"+colored(transform_codes[transform],"blue")
+	recipe["name"] = transform_codes[transform] + " "+ recipe["name"]
 	print_recipe(recipe)
 
 	# pretty_print_dict(recipe)

@@ -12,7 +12,7 @@ def getMethods(recipe_url):
 	recipDirections = recipe_parser.directions_steps(content)
 	
 	# to print each instruction
-	# for direction in recipDirections:
+	for direction in recipDirections:
 	# 	found_tool = search(direction,all_tools)
 	# 	if found_tool != None and found_tool not in tool:
 	# 		tools.append(found_tool)

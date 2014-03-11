@@ -26,10 +26,14 @@ def is_vegetarian(ingredient_name):
 	return "notfound"
 
 def to_vegetarian(ingredient_name):
-	return find_replacement(ingredient_name, "vegetarian",1)
+	if categorize(ingredient_name) in ["proteins","cooking-liquids"]:
+		return find_replacement(ingredient_name, "vegetarian",1)
+	return ingredient_name
 
 def to_meat(ingredient_name):
-	return find_replacement(ingredient_name, "vegetarian","")
+	if categorize(ingredient_name) in ["proteins","cooking-liquids"]:
+		return find_replacement(ingredient_name, "vegetarian","")
+	return ingredient_name
 
 def to_cuisine(cuisine, ingredient_name):
 	return find_replacement(ingredient_name, cuisine,1)
