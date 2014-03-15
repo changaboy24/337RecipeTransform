@@ -1,58 +1,101 @@
 Ingredient Name,Vegetarian ,Healthy,East-Asian,Indian,Mexican/Spanish,American,Italian,No Cuisine
-acorn squash,1,,,,,,,1
-artichokes,1,,,,,,,1
-asparagus,1,,,,,,,1
-avocado,1,,,,,,,1
-bean sprouts,1,,,,,,,1
-beets,1,,,,,,,1
-bell peppers,1,,,,,,,1
-black-eyed peas,1,,,,,,,1
-bok choy,1,,,,,,,1
-broccoli,1,,,,,,,1
-brussels sprouts,1,,,,,,,1
-butternut squash,1,,,,,,,1
-cabbage,1,,,,,,,1
-carrots,1,,,,,,,1
-cassava,1,,,,,,,1
-cauliflower,1,,,,,,,1
-celery,1,,,,,,,1
-collard greens,1,,,,,,,1
-corn,1,,,,,,,1
-cucumbers,1,,,,,,,1
-eggplant,1,,,,,,,1
-field peas,1,,,,,,,1
-fresh cowpeas,1,,,,,,,1
-green bananas,1,,,,,,,1
-green beans,1,,,,,,,1
-green lima beans,1,,,,,,,1
-green onion,1,,,,,,,1
-green onions,1,,,,,,,1
-green peas,1,,,,,,,1
-green peppers,1,,,,,,,1
-hubbard squash,1,,,,,,,1
-iceberg lettuce,1,,,,,,,1
-kale,1,,,,,,,1
-lettuce,1,,,,,,,1
-mesclun,1,,,,,,,1
-mushrooms,1,,,,,,,1
-mustard greens,1,,,,,,,1
-okra,1,,,,,,,1
-onions,1,,,,,,,1
-plantain,1,,,,,,,1
-plantains,1,,,,,,,1
-potato,1,,,,,,,1
-potatoes,1,,,,,,,1
-pumpkin,1,,,,,,,1
-red peppers,1,,,,,,,1
-romaine lettuce,1,,,,,,,1
-spinach,1,,,,,,,1
-sweet potatoes,1,,,,,,,1
-taro,1,,,,,,,1
-tomatoes,1,,,,,,,1
-turnip greens,1,,,,,,,1
-turnips,1,,,,,,,1
-water chestnuts,1,,,,,,,1
-watercress,1,,,,,,,1
-wax beans,1,,,,,,,1
-yellow pepper,1,,,,,,,1
-zucchini,1,,,,,,,1
+acorn squash,1,1,,,,,,1
+artichokes,1,1,,,,,,1
+asparagus,1,1,,,,,,1
+avocado,1,1,,,,,,1
+bean sprouts,1,1,1,,,,,
+beets,1,1,,,,,,1
+bell peppers,1,1,,1,,,1,
+black-eyed peas,1,1,,,,,,1
+bok choy,1,1,1,,,,,
+broccoli,1,1,,,,,,1
+brussels sprouts,1,1,,,,,,1
+butternut squash,1,1,,,,,,1
+cabbage,1,1,,1,,,,
+carrots,1,1,,1,,,1,
+cassava,1,1,,,,,,1
+cauliflower,1,1,,1,,,,
+celery,1,1,,,,,1,
+collard greens,1,1,,,,,,1
+corn,1,1,,,,,,1
+cucumbers,1,1,,,,,,1
+eggplant,1,1,,1,,,,
+field peas,1,1,,,,,,1
+fresh cowpeas,1,1,,,,,,1
+green bananas,1,1,,,,,,1
+green beans,1,1,1,1,,,,
+green lima beans,1,1,,,,,,1
+green onion,1,1,1,,,,,
+green onions,1,1,1,1,,,,
+green peas,1,1,,1,,,1,
+green peppers,1,1,,,,,,1
+hubbard squash,1,1,,,,,,1
+iceberg lettuce,1,1,,,,,,1
+kale,1,1,,,,,,1
+lettuce,1,1,1,,,,,
+mesclun,1,1,,,,,,1
+mushrooms,1,1,,1,,,1,
+mustard greens,1,1,,,,,,1
+okra,1,1,,1,,,,
+onions,1,1,,1,,,1,
+plantain,1,1,,1,,,,
+plantains,1,1,,,,,,1
+potato,1,1,,1,,,,
+potatoes,1,1,,1,,,1,
+pumpkin,1,1,,,,,,1
+red peppers,1,1,,,,,1,
+romaine lettuce,1,1,,,,,,1
+spinach,1,1,,1,,,1,
+sweet potatoes,1,1,,1,,,,
+taro,1,1,,,,,,1
+tomatoes,1,1,,1,,,1,
+turnip greens,1,1,,,,,,1
+turnips,1,1,,,,,,1
+water chestnuts,1,1,,,,,,1
+watercress,1,1,,,,,,1
+wax beans,1,1,,,,,,1
+yellow pepper,1,1,,,,,,1
+zucchini,1,1,,,,,1,
+chinese white cabbage,1,1,1,,,,,
+bok choy,1,1,1,,,,,
+napa cappage,1,1,1,,,,,
+pak khad kow,1,1,1,,,,,
+pak khwang tung,1,1,1,,,,,
+Chinese flowiring cabbage,1,1,1,,,,,
+Chinese broccoli,1,1,1,,,,,
+pak kha nar,1,1,1,,,,,
+bamboo shoot,1,1,1,,,,,
+nor mai,1,1,1,,,,,
+black fungus,1,1,1,,,,,
+cloud ear,1,1,1,,,,,
+beansprout,1,1,1,,,,,
+daikon,1,1,1,,,,,
+thai eggplant,1,1,1,,,,,
+cherry egg plant,1,1,1,,,,,
+winged bean,1,1,1,,,,,
+water chestnuts,1,1,1,,,,,
+straw mushrooms,1,1,1,,,,,
+onion,,,,1,,,1,
+ginger root,,,,1,,,,
+shallot,,,,1,,,,
+red onion,,,,1,,,,
+tomato,,,,1,,,,
+peas,,,,1,,,,
+green chile peppers,,,,1,,,,
+red chiles,,,,,,,,
+serrano peppers,,,,,,,,
+peppers,,,,,,,,
+jalapeno peppers,,,,,,,1,
+zucchinis,,,,,,,,
+zucchini,,,,,,,,
+turnip,,,,,,,,
+turnips,,,,,,,,
+fresh spinach leaves,,,,,,,,
+carrot,,,,1,,,1,
+shallots,,,,,,,,
+salad greens,,,,,,,,
+cauliflower florets,,,,,,,1,
+cauliflower,,,,,,,,
+green chilies,,,,,,,,
+celery stalk,,,,,,,,
+celery stalks,,,,,,,,

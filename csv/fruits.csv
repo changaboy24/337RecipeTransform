@@ -3,26 +3,18 @@ apple,1,1,,,,1,,0
 apricot,1,1,,,,,,1
 avocado,1,1,,,1,,,0
 banana,1,1,,,,,,1
-bell pepper,1,1,,,,,,1
-bilberry,1,1,,,,,,1
-blackberry,1,1,,,,,,1
-blackcurrant,1,1,,,,,,1
-blood orange,1,1,,,,,,1
-blueberry,1,1,,,,,,1
-boysenberry,1,1,,,,,,1
-breadfruit,1,1,,,,,,1
-canary melon,1,1,,,,,,1
-cantaloupe,1,1,,,,,,1
-cherimoya,1,1,,,,,,1
-cherry,1,1,,,,,,1
-chili pepper,1,1,,,,,,1
+bell pepper,1,1,1,1,1,1,1,0
+blackberry,1,1,,,,1,,0
+blood orange,1,1,,,,1,,0
+blueberry,1,1,,,,1,,0
+cantaloupe,1,1,,,1,1,,0
+cherry,1,1,,,,1,,0
+chili pepper,1,1,,,1,1,,0
 clementine ,1,1,,,,1,,0
-cloudberry,1,1,,,,,,1
-coconut,1,1,,,,,,1
+coconut,1,1,1,1,1,1,,0
 cranberry,1,1,,,,,,1
-cucumber,1,1,,,,,,1
-currant,1,1,,,,,,1
-damson,1,1,,,,,,1
+cucumber,1,1,1,1,,1,,0
+currant,1,1,1,1,,1,,0
 date,1,1,,,,,,1
 dragonfruit,1,1,1,,,,,0
 durian,1,1,1,,,,,0
@@ -42,12 +34,12 @@ jambul,1,1,,,,,,1
 jujube,1,1,,,,,,1
 kiwi fruit,1,1,,,,,,1
 kumquat,1,1,,,,,,1
-lemon,1,1,,,,,,1
-lime,1,1,,,,,,1
+lemon,1,1,,1,,,,0
+lime,1,1,,1,,,,0
 loquat,1,1,,,,,,1
 lychee,1,1,1,,,,,0
 mandarine,1,1,,,,,,1
-mango,1,1,1,,,,,0
+mango,1,1,1,1,,,,0
 melon,1,1,,,,,,1
 mulberry,1,1,,,,,,1
 nectarine,1,1,,,,,,1
@@ -59,7 +51,7 @@ papaya,1,1,,,,,,1
 passionfruit,1,1,,,,,,1
 peach,1,1,,,,,,1
 pear,1,1,,,,,,1
-pepper,1,1,,,,,,1
+pepper,1,1,,1,,,1,0
 persimmon,1,1,,,,,,1
 physalis,1,1,,,,,,1
 pineapple,1,1,,,,,,1
@@ -84,3 +76,11 @@ watermelon,1,1,,,,1,,0
 western raspberry,1,1,,,,,,1
 williams pear,1,1,,,,,,1
 bartlett pear,1,1,,,,,,1
+raisins,,,,1,,,1,
+squash,,,,,,,,
+yellow squash,,,,,,,,
+lemons,,,,,,,,
+bananas,,,,,,,,
+olives,,,,,,,,
+green olives,,,,,,,,
+capers,,,,,,,,

@@ -1,4 +1,4 @@
-import nltk, json, re, numpy, urllib2, fractions, database
+import nltk, json, re, numpy, urllib2, fractions, database, bs4, recipe_run
 
 def http_string(url):
 	"Takes a url and returns a string of its contents."
@@ -96,7 +96,14 @@ def directions_steps(str):
 	for step in directions(str):
 		out.extend(sentence_tokenize(step))
 	return out
-	
+
+def numberp(num):
+    try:
+        float(fractions.Fraction(num))
+        return True
+    except ValueError:
+        return False
+        
 def amount_split(str):
 	"Takes a string containing a quantity and a measurement, returning them as two elements in an array."
 	tokens = nltk.word_tokenize(str)
@@ -116,7 +123,8 @@ def amount_split(str):
 		tokens = tokens[0:-1]
 	amount = 0
 	for num in tokens:
-		amount = amount + float(fractions.Fraction(num))
+		if numberp(num):
+			amount = amount + float(fractions.Fraction(num))
 	if measurement!='' and measurement[-1] == 's' and measurement[-2]!='s':
 		measurement = measurement[0:-1]
 	return [amount,measurement]
@@ -188,4 +196,39 @@ def recipe_name(url):
 	end= url.find('/')
 	name = ' '.join(url[0:end].split('-'))
 	return name
+
+def url_pull(url):
+	list = []
+	s = bs4.BeautifulSoup(urllib2.urlopen(url))
+	for div in s.find_all(id='divGridItemWrapper'):
+		list.append('http://allrecipes.com/'+div.find('a')['href'])
+	return list
+
+def ingredient_pull():
+	ingredients = []
+	url = raw_input('url of search results: ')
+	cuisine = raw_input('cuisine: ')
+	urls = url_pull(url)
+	for link in urls:
+		for ingredient in recipe_run.make_recipe_dict(link)['ingredients']:
+			ingredients.append([ingredient['name'],ingredient['category'],cuisine])
+	return ingredients
+	
+def ingredient_pull_all():
+	ingredients = []
+	url_list = input('list of urls of search results: ')
+	cuisine = raw_input('cuisine: ')
+	for url in url_list:
+		urls = url_pull(url)
+		for link in urls:
+			for ingredient in recipe_run.make_recipe_dict(link)['ingredients']:
+				ingredients.append([ingredient['name'],ingredient['category'],cuisine])
+	return ingredients
+
+
+
+#update google docs with ingredients by cuisine
+#update separate sheet for uncategorized ingredients
+#move uncategorized ingredients to categories
+#update categories
 
