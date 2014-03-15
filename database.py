@@ -104,7 +104,7 @@ def get_tools_and_methods():
 
 client = MongoClient('localhost', 27017)
 db = client['db']
-food_categories = ["proteins","dairy","cooking-liquids","spices-sauces","vegetables","fruits","starches"]
+food_categories = ["proteins","dairy","cooking-liquids","spices","sauces","vegetables","fruits","starches"]
 
 #initializes a collection
 def init_db_collection(collectionName):
