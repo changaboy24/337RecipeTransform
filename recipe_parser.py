@@ -1,4 +1,4 @@
-import nltk, json, re, numpy, urllib2, fractions, database, bs4, recipe_run
+import nltk, json, re, urllib2, fractions, database, bs4, recipe_run
 
 def http_string(url):
 	"Takes a url and returns a string of its contents."
@@ -176,8 +176,13 @@ def name_split_sub(str):
 	[descriptor,name,category] = name_category(str)
 	return category
 
+def lower_tokens(tokens):
+	for (i,token) in enumerate(tokens):
+		tokens[i] = token.lower()
+	return tokens
+	
 def name_category(str):
-	tokens = str.split(" ")
+	tokens = lower_tokens(str.split(" "))
 	descriptor = []
 	while len(tokens) != 0:
 		category = database.categorize(' '.join(tokens))

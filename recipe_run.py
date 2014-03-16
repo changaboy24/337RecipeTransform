@@ -161,6 +161,7 @@ def transform_recipe(recipe, transform):
 			##if there was a change, color the text red
 			if ingredient["name"] != original_name:
 				ingredient["name"] = colored(ingredient["name"],"red")
+				ingredient["descriptor"] = ''
 			replacement_names[original_name] = ingredient["name"]
 
 	ordering = []

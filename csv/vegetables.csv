@@ -1,61 +1,61 @@
-Ingredient Name,Vegetarian ,Healthy,East-Asian,Indian,Mexican/Spanish,American,Italian,No Cuisine
+Ingredient Name,Vegetarian ,Healthy,East-Asian,Indian,Spanish,American,Italian,No Cuisine
 acorn squash,1,1,,,,,,1
-artichokes,1,1,,,,,,1
-asparagus,1,1,,,,,,1
-avocado,1,1,,,,,,1
+artichokes,1,1,,,,1,,
+asparagus,1,1,1,,,1,1,
+avocado,1,1,,,1,,,
 bean sprouts,1,1,1,,,,,
 beets,1,1,,,,,,1
-bell peppers,1,1,,1,,,1,
+bell peppers,1,1,1,1,1,,1,
 black-eyed peas,1,1,,,,,,1
 bok choy,1,1,1,,,,,
 broccoli,1,1,,,,,,1
 brussels sprouts,1,1,,,,,,1
-butternut squash,1,1,,,,,,1
-cabbage,1,1,,1,,,,
-carrots,1,1,,1,,,1,
+butternut squash,1,1,,,1,,,
+cabbage,1,1,1,1,1,,,
+carrots,1,1,1,1,1,1,1,
 cassava,1,1,,,,,,1
 cauliflower,1,1,,1,,,,
-celery,1,1,,,,,1,
+celery,1,1,1,,1,1,1,
 collard greens,1,1,,,,,,1
-corn,1,1,,,,,,1
+corn,1,1,,,1,1,,
 cucumbers,1,1,,,,,,1
-eggplant,1,1,,1,,,,
+eggplant,1,1,1,1,,1,1,
 field peas,1,1,,,,,,1
 fresh cowpeas,1,1,,,,,,1
 green bananas,1,1,,,,,,1
-green beans,1,1,1,1,,,,
+green beans,1,1,1,1,,1,,
 green lima beans,1,1,,,,,,1
-green onion,1,1,1,,,,,
-green onions,1,1,1,1,,,,
-green peas,1,1,,1,,,1,
+green onion,1,1,1,,1,1,,
+green onions,1,1,1,1,1,1,,
+green peas,1,1,1,1,,,1,
 green peppers,1,1,,,,,,1
 hubbard squash,1,1,,,,,,1
-iceberg lettuce,1,1,,,,,,1
+iceberg lettuce,1,1,,,1,1,,
 kale,1,1,,,,,,1
-lettuce,1,1,1,,,,,
+lettuce,1,1,1,,1,1,,
 mesclun,1,1,,,,,,1
-mushrooms,1,1,,1,,,1,
+mushrooms,1,1,1,1,,1,1,
 mustard greens,1,1,,,,,,1
-okra,1,1,,1,,,,
-onions,1,1,,1,,,1,
-plantain,1,1,,1,,,,
+okra,1,1,1,1,,1,,
+onions,1,1,1,1,1,1,1,
+plantain,1,1,,1,1,,,
 plantains,1,1,,,,,,1
-potato,1,1,,1,,,,
-potatoes,1,1,,1,,,1,
+potato,1,1,1,1,,1,,
+potatoes,1,1,1,1,1,1,1,
 pumpkin,1,1,,,,,,1
-red peppers,1,1,,,,,1,
-romaine lettuce,1,1,,,,,,1
-spinach,1,1,,1,,,1,
-sweet potatoes,1,1,,1,,,,
+red peppers,1,1,1,,,,1,
+romaine lettuce,1,1,,,1,,,
+spinach,1,1,1,1,1,1,1,
+sweet potatoes,1,1,1,1,,,,
 taro,1,1,,,,,,1
-tomatoes,1,1,,1,,,1,
+tomatoes,1,1,1,1,1,1,1,
 turnip greens,1,1,,,,,,1
 turnips,1,1,,,,,,1
-water chestnuts,1,1,,,,,,1
+water chestnuts,1,1,1,,,,,
 watercress,1,1,,,,,,1
 wax beans,1,1,,,,,,1
 yellow pepper,1,1,,,,,,1
-zucchini,1,1,,,,,1,
+zucchini,1,1,1,,1,1,1,
 chinese white cabbage,1,1,1,,,,,
 bok choy,1,1,1,,,,,
 napa cappage,1,1,1,,,,,
@@ -75,27 +75,64 @@ cherry egg plant,1,1,1,,,,,
 winged bean,1,1,1,,,,,
 water chestnuts,1,1,1,,,,,
 straw mushrooms,1,1,1,,,,,
-onion,,,,1,,,1,
-ginger root,,,,1,,,,
-shallot,,,,1,,,,
-red onion,,,,1,,,,
-tomato,,,,1,,,,
-peas,,,,1,,,,
-green chile peppers,,,,1,,,,
-red chiles,,,,,,,,
-serrano peppers,,,,,,,,
-peppers,,,,,,,,
-jalapeno peppers,,,,,,,1,
-zucchinis,,,,,,,,
-zucchini,,,,,,,,
-turnip,,,,,,,,
-turnips,,,,,,,,
-fresh spinach leaves,,,,,,,,
-carrot,,,,1,,,1,
-shallots,,,,,,,,
-salad greens,,,,,,,,
-cauliflower florets,,,,,,,1,
-cauliflower,,,,,,,,
-green chilies,,,,,,,,
-celery stalk,,,,,,,,
-celery stalks,,,,,,,,
+onion,1,1,1,1,1,1,1,
+ginger root,1,1,1,1,,,,
+shallot,1,1,1,1,,1,1,
+red onion,1,1,1,1,1,1,1,
+tomato,1,1,1,1,1,1,1,
+peas,1,1,,1,,,,
+green chile peppers,1,1,1,1,1,1,,
+red chiles,1,1,,1,,,,
+serrano peppers,1,1,1,1,1,,,
+peppers,1,1,1,1,1,1,1,
+jalapeno peppers,1,1,,1,1,1,1,
+zucchinis,1,1,,1,,,,
+zucchini,1,1,,,,,,
+turnip,1,1,,,,,,
+turnips,1,1,,,,,,
+fresh spinach leaves,1,1,,1,,,,
+carrot,1,1,1,1,1,1,1,
+shallots,1,1,1,1,,,,
+salad greens,1,1,,1,,,,
+cauliflower florets,1,1,,1,,1,1,
+cauliflower,1,1,,,,,,
+green chilies,1,1,,1,1,,,
+celery stalk,1,1,,,,,1,
+celery stalks,1,1,,,,,,
+eggplants,1,1,,,,,1,
+spinach leaves,1,1,,,,,1,
+artichoke hearts,1,1,,,,1,1,
+broccoli rabe,1,1,,,,,1,
+escarole,1,1,,,,,1,
+corn kernels,1,1,,,1,,1,
+leeks,1,1,,,,,1,
+baby spinach leaves,1,1,,,,,1,
+escarole,1,1,,,,,1,
+lettuce leaves,1,1,1,,,,,
+red chilies,1,1,1,,,,,
+lemon grass,1,1,1,,,,,
+lemongrass,1,1,1,,,,,
+galangal,1,1,1,,,,,
+broccoli florets,1,1,1,,,1,,
+bamboo shoots,1,1,1,,,,,
+leek,1,1,1,,,1,,
+mushroom caps,1,1,,,,1,,
+celery ribs,1,1,,,,1,,
+tomatillos,1,1,,,1,,,
+poblano peppers,1,1,,,1,,,
+poblano pepper,1,1,,,1,,,
+anaheim pepper,1,1,,,1,,,
+anaheim peppers,1,1,,,1,,,
+ancho chiles,1,1,,,1,,,
+guajillo chiles,1,1,,,1,,,
+mulato chiles,1,1,,,1,,,
+pasilla chilies,1,1,,,1,,,
+arugula,1,1,,,1,,,
+arugula leaves,1,1,,,1,,,
+avocados,1,1,,,1,,,
+avocadoes,1,1,,,1,,,
+zucchini blossoms,1,1,,,1,,,
+chiles,1,1,,,1,,,
+radish,1,1,,,1,,,
+radishes,1,1,,,1,,,
+serrano chiles,1,1,,,1,,,

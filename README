@@ -19,3 +19,6 @@ gspread
 
 termcolor
 	pip install termcolor
+
+bs4
+	pip install bs4
