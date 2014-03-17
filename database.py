@@ -20,14 +20,17 @@ def categorize(ingredient_name):
 #output: 1/0/"nothing found" (i.e. 0, 1)
 #only looks through proteins.csv and cooking-liquids.csv
 def is_vegetarian(ingredient_name):
-	for category in ["proteins"]:#, cooking-liquids"]:
+	for category in ["proteins", "cooking-liquids"]:
 		if db[category].find({"name":ingredient_name}).count() > 0:
 			return db[category].find_one({"name":ingredient_name})["vegetarian"]
 	return "notfound"
 
 def to_vegetarian(ingredient_name):
 	if categorize(ingredient_name) in ["proteins","cooking-liquids"]:
-		return find_replacement(ingredient_name, "vegetarian",1)
+		if is_vegetarian(ingredient_name):
+			return ingredient_name
+		else:
+			return find_replacement(ingredient_name, "vegetarian",1)
 	return ingredient_name
 
 def to_meat(ingredient_name):
@@ -150,12 +153,19 @@ def put_into_db(csv_name, attributes):
 def find_replacement(ingredient_name, transform, value):
 	category = categorize(ingredient_name)
 	value = str(value).lower()
+	if fits_transform(ingredient_name,transform,value,category):
+		return ingredient_name
 	count = db[category].find({transform:value}).count()
 	random_num = random.randint(0,count)
 	if count > 0:
 		return db[category].find({transform:value}).limit(-1).skip(random_num).next()['name']
 	return ingredient_name
 
+def fits_transform(ingredient_name,transform,value,category):
+	if db[category].find({"name":ingredient_name}).count() > 0:
+		return value == db[category].find_one({"name":ingredient_name})[transform]
+	else:
+		return True
 def main():
 	import_foods()
 	import_actions()
