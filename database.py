@@ -20,13 +20,13 @@ def categorize(ingredient_name):
 #output: 1/0/"nothing found" (i.e. 0, 1)
 #only looks through proteins.csv and cooking-liquids.csv
 def is_vegetarian(ingredient_name):
-	for category in ["proteins", "cooking-liquids"]:
+	for category in ["proteins", "base liquids","solid fats"]:
 		if db[category].find({"name":ingredient_name}).count() > 0:
 			return db[category].find_one({"name":ingredient_name})["vegetarian"]
 	return "notfound"
 
 def to_vegetarian(ingredient_name):
-	if categorize(ingredient_name) in ["proteins","cooking-liquids"]:
+	if categorize(ingredient_name) in ["proteins","base liquids","solid fats"]:
 		if is_vegetarian(ingredient_name):
 			return ingredient_name
 		else:
@@ -34,7 +34,7 @@ def to_vegetarian(ingredient_name):
 	return ingredient_name
 
 def to_meat(ingredient_name):
-	if categorize(ingredient_name) in ["proteins","cooking-liquids"]:
+	if categorize(ingredient_name) in ["proteins","base liquids","solid fats"]:
 		return find_replacement(ingredient_name, "vegetarian","")
 	return ingredient_name
 
@@ -107,7 +107,7 @@ def get_tools_and_methods():
 
 client = MongoClient('localhost', 27017)
 db = client['db']
-food_categories = ["proteins","dairy","cooking-liquids","spices","sauces","vegetables","fruits","starches"]
+food_categories = ["proteins","cream","cheese","juice","alcohol","base liquids","solid fats","oils","bread","grain","seeds","pasta","rice","spices","sauces","vegetables","fruits","thickener"]
 
 #initializes a collection
 def init_db_collection(collectionName):
@@ -158,7 +158,10 @@ def find_replacement(ingredient_name, transform, value):
 	count = db[category].find({transform:value}).count()
 	random_num = random.randint(0,count)
 	if count > 0:
-		return db[category].find({transform:value}).limit(-1).skip(random_num).next()['name']
+		try:
+			return db[category].find({transform:value}).limit(-1).skip(random_num).next()['name']
+		except:
+			return ingredient_name
 	return ingredient_name
 
 def fits_transform(ingredient_name,transform,value,category):
@@ -166,6 +169,7 @@ def fits_transform(ingredient_name,transform,value,category):
 		return value == db[category].find_one({"name":ingredient_name})[transform]
 	else:
 		return True
+		
 def main():
 	import_foods()
 	import_actions()
